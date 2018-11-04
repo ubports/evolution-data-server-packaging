@@ -1,0 +1,29 @@
+From ff1af187f8bd608c85549aaa877cd03bcc54d7be Mon Sep 17 00:00:00 2001
+From: Milan Crha <mcrha@redhat.com>
+Date: Thu, 19 Jul 2018 17:54:22 +0200
+Subject: [PATCH] [EClient] Really default readonly property to FALSE
+
+While the class_init() defaults readonly property to FALSE, it's not marked
+to be constructed, thus this value doesn't propagate to the corresponding
+variable. That would not be a problem, but the instance's init() function
+set the readonly to TRUE. Let's make it the same.
+---
+ src/libedataserver/e-client.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/libedataserver/e-client.c b/src/libedataserver/e-client.c
+index 6fdfef6b6..3c8a5fe82 100644
+--- a/src/libedataserver/e-client.c
++++ b/src/libedataserver/e-client.c
+@@ -945,7 +945,7 @@ e_client_init (EClient *client)
+ {
+ 	client->priv = E_CLIENT_GET_PRIVATE (client);
+ 
+-	client->priv->readonly = TRUE;
++	client->priv->readonly = FALSE;
+ 	client->priv->main_context = g_main_context_ref_thread_default ();
+ 
+ 	g_rec_mutex_init (&client->priv->prop_mutex);
+-- 
+2.18.1
+
