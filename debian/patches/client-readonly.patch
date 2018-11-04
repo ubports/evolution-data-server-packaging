@@ -11,10 +11,10 @@ set the readonly to TRUE. Let's make it the same.
  src/libedataserver/e-client.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/src/libedataserver/e-client.c b/src/libedataserver/e-client.c
+diff --git a/libedataserver/e-client.c b/libedataserver/e-client.c
 index 6fdfef6b6..3c8a5fe82 100644
---- a/src/libedataserver/e-client.c
-+++ b/src/libedataserver/e-client.c
+--- a/libedataserver/e-client.c
++++ b/libedataserver/e-client.c
 @@ -945,7 +945,7 @@ e_client_init (EClient *client)
  {
  	client->priv = E_CLIENT_GET_PRIVATE (client);
